@@ -25,13 +25,17 @@ const TopicDetail = () => {
   const subtopic = topic.subtopics[parseInt(subtopicIndex)];
   if (!subtopic) return <div>Subtopic not found</div>;
 
-  // Check if this is the installation or IDE subtopic
-  if (subtopic.includes('Python installation & setup')) {
+  // Check for specific subtopics that have dedicated guide pages
+  if (subtopic.trim() === 'Python installation & setup (Windows, macOS, Linux)') {
     return <Navigate to="/python-installation" replace />;
   }
   
-  if (subtopic.includes('Choosing an IDE/Code Editor')) {
+  if (subtopic.trim() === 'Choosing an IDE/Code Editor (VS Code, PyCharm, Jupyter)') {
     return <Navigate to="/ide-guide" replace />;
+  }
+  
+  if (subtopic.trim() === 'Running Python scripts and interactive shell') {
+    return <Navigate to="/running-python" replace />;
   }
 
   // This is where you'd fetch or define more detailed content

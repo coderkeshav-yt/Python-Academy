@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import TopicDetail from "./pages/TopicDetail";
 import InstallationGuide from "./pages/installation/InstallationGuide";
 import IDEGuide from "./pages/ide/IDEGuide";
+import RunningPythonGuide from "./pages/running-python/RunningPythonGuide";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/python-installation" element={<InstallationGuide />} />
           <Route path="/ide-guide" element={<IDEGuide />} />
+          <Route path="/running-python" element={<RunningPythonGuide />} />
           <Route path="/topic/:levelId/:topicIndex/:subtopicIndex" element={<TopicDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
