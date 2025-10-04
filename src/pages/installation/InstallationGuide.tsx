@@ -147,7 +147,7 @@ const InstallationGuide: React.FC = () => {
                   <p className="mb-4">Homebrew is a package manager that makes it easy to install Python and other tools.</p>
                   <ol className="list-decimal pl-6 space-y-2">
                     <li>Install Homebrew by running this command in Terminal:
-                      <CodeBlock code={'/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'} />
+                      <CodeBlock code={'/bin/bash -c "$(curl -fsSL https:\\/\\/raw.githubusercontent.com\\/Homebrew\\/install\\/HEAD\\/install.sh)"'} />
                     </li>
                     <li>Follow the on-screen instructions to complete the installation</li>
                   </ol>
