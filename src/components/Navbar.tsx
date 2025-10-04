@@ -51,14 +51,13 @@ const Navbar = () => {
           {/* Logo */}
           <button
             onClick={() => scrollToSection("home")}
-            className="flex items-center space-x-2 group"
+            className="flex items-center group"
           >
-            <div className="p-2 bg-gradient-hero rounded-lg group-hover:shadow-glow transition-all duration-300">
-              <Code2 className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <span className="font-bold text-xl bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-              Python Zero to Hero
-            </span>
+            <img 
+              src="/pythonlogo.png" 
+              alt="Python Logo" 
+              className="h-12 w-auto transition-all duration-300 group-hover:opacity-90"
+            />
           </button>
 
           {/* Desktop Navigation */}
