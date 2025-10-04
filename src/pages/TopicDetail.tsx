@@ -25,9 +25,13 @@ const TopicDetail = () => {
   const subtopic = topic.subtopics[parseInt(subtopicIndex)];
   if (!subtopic) return <div>Subtopic not found</div>;
 
-  // Check if this is the installation subtopic
+  // Check if this is the installation or IDE subtopic
   if (subtopic.includes('Python installation & setup')) {
     return <Navigate to="/python-installation" replace />;
+  }
+  
+  if (subtopic.includes('Choosing an IDE/Code Editor')) {
+    return <Navigate to="/ide-guide" replace />;
   }
 
   // This is where you'd fetch or define more detailed content
