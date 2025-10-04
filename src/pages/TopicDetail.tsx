@@ -37,6 +37,14 @@ const TopicDetail = () => {
   if (subtopic.trim() === 'Running Python scripts and interactive shell') {
     return <Navigate to="/running-python" replace />;
   }
+  
+  if (subtopic.trim() === 'Understanding Python\'s philosophy (The Zen of Python)') {
+    return <Navigate to="/zen-of-python" replace />;
+  }
+  
+  if (subtopic.trim() === 'Basic debugging techniques') {
+    return <Navigate to="/debugging" replace />;
+  }
 
   // This is where you'd fetch or define more detailed content
   const detailedContent = {
