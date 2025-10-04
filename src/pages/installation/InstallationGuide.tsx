@@ -8,11 +8,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 
 // Reusable CodeBlock component with copy functionality
-const CodeBlock = ({ code, className = "" }: { code: string; className?: string }) => {
+interface CodeBlockProps {
+  code: string;
+  className?: string;
+}
+
+const CodeBlock: React.FC<CodeBlockProps> = ({ code, className = "" }) => {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(code.replace(/\\"/g, '"'));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -37,7 +42,7 @@ const CodeBlock = ({ code, className = "" }: { code: string; className?: string 
   );
 };
 
-const InstallationGuide = () => {
+const InstallationGuide: React.FC = () => {
   const navigate = useNavigate();
 
   return (
@@ -142,7 +147,7 @@ const InstallationGuide = () => {
                   <p className="mb-4">Homebrew is a package manager that makes it easy to install Python and other tools.</p>
                   <ol className="list-decimal pl-6 space-y-2">
                     <li>Install Homebrew by running this command in Terminal:
-                      <CodeBlock code="/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"" />
+                      <CodeBlock code={'/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'} />
                     </li>
                     <li>Follow the on-screen instructions to complete the installation</li>
                   </ol>
@@ -185,25 +190,57 @@ const InstallationGuide = () => {
                     <div>
                       <h4 className="font-medium">For Ubuntu/Debian:</h4>
                       <CodeBlock code="sudo apt update
-sudo apt install python3 python3-pip python3-venv" copyable />
+sudo apt install python3 python3-pip python3-venv" />
                     </div>
 
                     <div>
                       <h4 className="font-medium">For Fedora:</h4>
-                      <CodeBlock code="sudo dnf install python3 python3-pip" copyable />
-{{ ... }}
-              <CardHeader>
-                <CardTitle>Installing Packages</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Use pip to install packages:</p>
-                <CodeBlock code="pip install package-name" copyable />
-                <p className="mt-4">Common packages to get started:</p>
-                <CodeBlock code="pip install numpy pandas matplotlib jupyter" copyable />
+                      <CodeBlock code="sudo dnf install python3 python3-pip" />
+                    </div>
+
+                    <div>
+                      <h4 className="font-medium">For Arch Linux:</h4>
+                      <CodeBlock code="sudo pacman -S python python-pip" />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">2. Verify Installation</h3>
+                  <p className="mb-4">After installation, verify Python and pip are working:</p>
+                  <CodeBlock code="python3 --version
+pip3 --version" />
+                </div>
               </CardContent>
             </Card>
-          </div>
-{{ ... }}
+          </TabsContent>
+        </Tabs>
+
+        <div className="mt-12">
+          <Card>
+            <CardHeader>
+              <CardTitle>Next Steps</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <h3 className="text-xl font-semibold mb-4">Setting Up a Virtual Environment</h3>
+              <p>It's recommended to use virtual environments for Python projects:</p>
+              <CodeBlock code="python -m venv myenv" />
+              <p className="mt-4">Activate the environment:</p>
+              <div className="space-y-2">
+                <p>On Windows:</p>
+                <CodeBlock code=".\\myenv\\Scripts\\activate" />
+                <p>On macOS/Linux:</p>
+                <CodeBlock code="source myenv/bin/activate" />
+              </div>
+
+              <h3 className="text-xl font-semibold mt-8 mb-4">Installing Packages</h3>
+              <p>Use pip to install packages:</p>
+              <CodeBlock code="pip install package-name" />
+              <p className="mt-4">Common packages to get started:</p>
+              <CodeBlock code="pip install numpy pandas matplotlib jupyter" />
+            </CardContent>
+          </Card>
+        </div>
 
         <div className="mt-12 pt-8 border-t">
           <h2 className="text-2xl font-bold mb-4">Troubleshooting</h2>
